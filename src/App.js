@@ -11,9 +11,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import "./App.css";
-// import characters from './protagonists.json'
+import characters from './protagonists.json'
 
 function App() {
+  console.log("characters json file", characters)
   return (
     <div className="App">
       <CssBaseline />
@@ -63,99 +64,24 @@ function App() {
           justifyContent="center"
           alignItems="flex-start"
         >
+        {characters.map((itemNumber) => (  
           <Grid item xs={12} md={4}>
             <Card>
               <CardMedia
                 component="img"
                 height="350px"
-                image={"https://i.imgur.com/56chgMj.png"}
+                image={itemNumber.pic}
               />
               <CardHeader
-                title={"Miles Morales"}
+                title={itemNumber.title}
                 titleTypographyProps={{ align: "center" }}
                 sx={{ mt: 1 }}
               />
               <CardContent sx={{ pt: 0 }}>
                 <ul>
-                  <Typography component="li">
-                    Definitely Not Spiderman
-                  </Typography>
-                  <Typography component="li">
-                    "Lanky Puberty Boy" vibes
-                  </Typography>
-                  <Typography component="li">Can't do it on demand</Typography>
-                  <Typography component="li">Elite music taste</Typography>
-                </ul>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  sx={{ 
-                    px: 6, 
-                    mx: "auto", 
-                    border: "5px solid red"
-                  }}
-                >
-                  Vote
-                </Button>
-              </CardActions>
-            </Card>
-            <Card>
-              <CardMedia
-                component="img"
-                height="350px"
-                image={"https://i.imgur.com/zuscNPl.png"}
-              />
-              <CardHeader
-                title={"Moana Waialiki"}
-                titleTypographyProps={{ align: "center" }}
-                sx={{ mt: 1 }}
-              />
-              <CardContent sx={{ pt: 0 }}>
-                <ul>
-                  <Typography component="li">
-                  "Glass half full kinda gal"
-                  </Typography>
-                  <Typography component="li">
-                  "Lackluster chicken mom"
-                  </Typography>
-                  <Typography component="li">"Spaces out looking at water"</Typography>
-                  <Typography component="li">"Never really knows why"</Typography>
-                </ul>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  sx={{ 
-                    px: 6, 
-                    mx: "auto"
-                  }}
-                >
-                  Vote
-                </Button>
-              </CardActions>
-            </Card>
-            <Card>
-              <CardMedia
-                component="img"
-                height="350px"
-                image={"https://i.imgur.com/SaYqUTP.png"}
-              />
-              <CardHeader
-                title={"Hiro Hamada"}
-                titleTypographyProps={{ align: "center" }}
-                sx={{ mt: 1 }}
-              />
-              <CardContent sx={{ pt: 0 }}>
-                <ul>
-                  <Typography component="li">
-                  "Saved by a flying pillow. Again."
-                  </Typography>
-                  <Typography component="li">
-                  "Has epic bedhead"
-                  </Typography>
-                  <Typography component="li">"Hiro = Hiccup, Baymax = Toothless"</Typography>
-                  <Typography component="li">"Neeeeeeeeeeeeeeeerd"</Typography>
+                  {itemNumber.description.map((descriptionBulletPoint) => (
+                    <Typography component="li">{descriptionBulletPoint}</Typography>
+                  ))}
                 </ul>
               </CardContent>
               <CardActions>
@@ -171,6 +97,7 @@ function App() {
               </CardActions>
             </Card>
           </Grid>
+          ))}
         </Grid>
       </Container>
     </div>
