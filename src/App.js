@@ -25,7 +25,7 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Characters Inc
+            Superheroes Inc
           </Typography>
           <Button
             href="#"
@@ -90,10 +90,81 @@ function App() {
               <CardActions>
                 <Button
                   variant="contained"
-                  sx={{ px: 6, mx: "auto" }}
-                  // I'm trying to use custom CSS defined in the file App.css,
-                  // but it isn't working. Why, and how can I fix it?
-                  className="characterButton"
+                  sx={{ 
+                    px: 6, 
+                    mx: "auto", 
+                    border: "5px solid red"
+                  }}
+                >
+                  Vote
+                </Button>
+              </CardActions>
+            </Card>
+            <Card>
+              <CardMedia
+                component="img"
+                height="350px"
+                image={"https://i.imgur.com/zuscNPl.png"}
+              />
+              <CardHeader
+                title={"Moana Waialiki"}
+                titleTypographyProps={{ align: "center" }}
+                sx={{ mt: 1 }}
+              />
+              <CardContent sx={{ pt: 0 }}>
+                <ul>
+                  <Typography component="li">
+                  "Glass half full kinda gal"
+                  </Typography>
+                  <Typography component="li">
+                  "Lackluster chicken mom"
+                  </Typography>
+                  <Typography component="li">"Spaces out looking at water"</Typography>
+                  <Typography component="li">"Never really knows why"</Typography>
+                </ul>
+              </CardContent>
+              <CardActions>
+                <Button
+                  variant="contained"
+                  sx={{ 
+                    px: 6, 
+                    mx: "auto"
+                  }}
+                >
+                  Vote
+                </Button>
+              </CardActions>
+            </Card>
+            <Card>
+              <CardMedia
+                component="img"
+                height="350px"
+                image={"https://i.imgur.com/SaYqUTP.png"}
+              />
+              <CardHeader
+                title={"Hiro Hamada"}
+                titleTypographyProps={{ align: "center" }}
+                sx={{ mt: 1 }}
+              />
+              <CardContent sx={{ pt: 0 }}>
+                <ul>
+                  <Typography component="li">
+                  "Saved by a flying pillow. Again."
+                  </Typography>
+                  <Typography component="li">
+                  "Has epic bedhead"
+                  </Typography>
+                  <Typography component="li">"Hiro = Hiccup, Baymax = Toothless"</Typography>
+                  <Typography component="li">"Neeeeeeeeeeeeeeeerd"</Typography>
+                </ul>
+              </CardContent>
+              <CardActions>
+                <Button
+                  variant="contained"
+                  sx={{ 
+                    px: 6, 
+                    mx: "auto"
+                  }}
                 >
                   Vote
                 </Button>
