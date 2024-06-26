@@ -7,10 +7,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import "./App.css";
 import characters from './protagonists.json'
-import CharacterCard from "./CharacterCard";
+import CharacterCard from './CharacterCard';
+import React, { useState, useEffect } from 'react';
+
+// console.log("1 Original fact.")
+let myFact = "Percy Jackson is a character in a book series on Greek mythology.";
 
 function App() {
-  console.log("characters json file", characters)
+  // window.onload() = fetchFact();
+  const [fact, setFact] = useState("Annabeth Chase is the daughter of Athena.");
+  // console.log("characters json file", characters)
   return (
     <div className="App">
       <CssBaseline />
@@ -28,7 +34,9 @@ function App() {
             href="#"
             variant="outlined"
             sx={{ my: 1, mx: 1.5 }}
-            onClick={() => alert("Boop!")}
+            onClick={() => {
+              fetchFact()
+            }}
           >
             Button
           </Button>
@@ -48,8 +56,18 @@ function App() {
           align="center"
           color="text.secondary"
           sx={{ mx: 10 }}
+          id = "subtitle"
         >
-          Hmm, seems like we're missing some of the other protagonists.
+          {myFact}
+        </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          color="text.secondary"
+          sx={{ mx: 10 }}
+          id = "stateFact"
+        >
+          {fact}
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -65,6 +83,7 @@ function App() {
               title={itemNumber.title} 
               image={itemNumber.pic} 
               description={itemNumber.description}
+              buttonId={"subtitle"}
             />
           ))}
         </Grid>
@@ -74,3 +93,22 @@ function App() {
 }
 
 export default App;
+
+async function fetchFact() {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      // alert(result.text);
+      // setMyFact(result.text);
+      myFact = result.text;
+      let sub = document.getElementById("subtitle");
+      sub.innerHTML = myFact;
+      // console.log(sub);
+    })
+    .catch((error) => console.error(error));
+}
