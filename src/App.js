@@ -16,6 +16,20 @@ let myFact = "Percy Jackson is a character in a book series on Greek mythology."
 function App() {
   // window.onload() = fetchFact();
   const [fact, setFact] = useState("Annabeth Chase is the daughter of Athena.");
+
+  function getQuote() {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setFact(result.text);
+      })
+      .catch((error) => console.error(error));
+  }
   // console.log("characters json file", characters)
   return (
     <div className="App">
@@ -36,6 +50,7 @@ function App() {
             sx={{ my: 1, mx: 1.5 }}
             onClick={() => {
               fetchFact()
+              getQuote()
             }}
           >
             Button
@@ -58,8 +73,9 @@ function App() {
           sx={{ mx: 10 }}
           id = "subtitle"
         >
-          {myFact}
+          Updated by innerHTML method: {myFact}
         </Typography>
+        <br/>
         <Typography
           variant="h5"
           align="center"
@@ -67,7 +83,7 @@ function App() {
           sx={{ mx: 10 }}
           id = "stateFact"
         >
-          {fact}
+          Updated by useState: {fact}
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -107,7 +123,7 @@ async function fetchFact() {
       // setMyFact(result.text);
       myFact = result.text;
       let sub = document.getElementById("subtitle");
-      sub.innerHTML = myFact;
+      sub.innerHTML = "Updated by innerHTML method: " + myFact;
       // console.log(sub);
     })
     .catch((error) => console.error(error));
