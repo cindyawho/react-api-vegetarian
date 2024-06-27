@@ -9,20 +9,24 @@ import "./App.css";
 import characters from './protagonists.json'
 import CharacterCard from './CharacterCard';
 import React, { useState, useEffect } from 'react';
+import Button1 from "./Button1";
 
 // console.log("1 Original fact.")
 let myFact = "Percy Jackson is a character in a book series on Greek mythology.";
 
 function App() {
-  // window.onload() = fetchFact();
+  // useState method
   const [fact, setFact] = useState("Annabeth Chase is the daughter of Athena.");
+  const [counter1, setCounter1] = useState(0);// BUTTON COUNTER
+  function counter() {
+    setCounter1(counter1 + 1);
+  }
 
   function getQuote() {
     const requestOptions = {
       method: "GET",
       redirect: "follow"
     };
-    
     fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -30,7 +34,7 @@ function App() {
       })
       .catch((error) => console.error(error));
   }
-  // console.log("characters json file", characters)
+  
   return (
     <div className="App">
       <CssBaseline />
@@ -44,6 +48,17 @@ function App() {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Superheroes Inc
           </Typography>
+          <Button1/>
+          <Button
+            href="#"
+            variant="outlined"
+            sx={{ my: 1, mx: 1.5 }}
+            onClick={() => {
+              counter();
+            }}
+          >
+            Clicker - {counter1}
+          </Button>
           <Button
             href="#"
             variant="outlined"
@@ -53,7 +68,7 @@ function App() {
               getQuote()
             }}
           >
-            Button
+            Fact Button
           </Button>
         </Toolbar>
       </AppBar>
