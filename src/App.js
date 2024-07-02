@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import "./App.css";
 import characters from './protagonists.json'
 import CharacterCard from './CharacterCard';
+import FoodGame from './FoodGame';
 import React, { useState, useEffect } from 'react';
 import Button1 from "./Button1";
 
@@ -16,42 +17,42 @@ let myFact = "Percy Jackson is a character in a book series on Greek mythology."
 
 function App() {
   // useState method
-  const [fact, setFact] = useState("Annabeth Chase is the daughter of Athena.");
-  const [counter1, setCounter1] = useState(0);// BUTTON COUNTER
-  function counter() {
-    setCounter1(counter1 + 1);
-  }
+  // const [fact, setFact] = useState("Annabeth Chase is the daughter of Athena.");
+  // const [counter1, setCounter1] = useState(0);// BUTTON COUNTER
+  // function counter() {
+  //   setCounter1(counter1 + 1);
+  // }
   
-  const [dog, setDog] = useState("");
-  async function fetchDogPic() {  
-    //DOG PICTURE STATE
+  // const [dog, setDog] = useState("");
+  // async function fetchDogPic() {  
+  //   //DOG PICTURE STATE
     
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow"
-    };
+  //   const requestOptions = {
+  //     method: "GET",
+  //     redirect: "follow"
+  //   };
     
-    fetch("https://random.dog/woof.json?ref=apilist.fun", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result.url);
-        setDog(result.url);
-      })
-      .catch((error) => console.error(error));
-  }
+  //   fetch("https://random.dog/woof.json?ref=apilist.fun", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       console.log(result.url);
+  //       setDog(result.url);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }
 
-  function getQuote() {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow"
-    };
-    fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setFact(result.text);
-      })
-      .catch((error) => console.error(error));
-  }
+  // function getQuote() {
+  //   const requestOptions = {
+  //     method: "GET",
+  //     redirect: "follow"
+  //   };
+  //   fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setFact(result.text);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }
   
   return (
     <div className="App">
@@ -64,34 +65,12 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Superheroes Inc
+            Is it Vegetarian??
           </Typography>
-          <Button1/>
-          <Button
-            href="#"
-            variant="outlined"
-            sx={{ my: 1, mx: 1.5 }}
-            onClick={() => {
-              counter();
-            }}
-          >
-            Clicker - {counter1}
-          </Button>
-          <Button
-            href="#"
-            variant="outlined"
-            sx={{ my: 1, mx: 1.5 }}
-            onClick={() => {
-              fetchFact()
-              getQuote()
-            }}
-          >
-            Fact Button
-          </Button>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" sx={{ my: 4 }}>
-        <Typography
+        {/* <Typography
           variant="h2"
           align="center"
           color="text.primary"
@@ -119,7 +98,6 @@ function App() {
           Updated by useState: {fact}
         </Typography>
       </Container>
-      {/* End hero unit */}
       <Container maxWidth="lg">
         <Grid
           container
@@ -170,7 +148,8 @@ function App() {
         >
           Click for a Dog Picture
           <br/>
-        </Button>
+        </Button> */}
+        <FoodGame/>
       </Container>
     </div>
   );
