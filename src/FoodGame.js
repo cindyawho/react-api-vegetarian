@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import { Container } from '@mui/material';
+import Grid from "@mui/material/Grid";
 
 export default function FoodGame(){
     const[score, setScore] = useState(0);
