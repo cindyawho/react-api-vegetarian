@@ -21,6 +21,24 @@ function App() {
   function counter() {
     setCounter1(counter1 + 1);
   }
+  
+  const [dog, setDog] = useState("");
+  async function fetchDogPic() {  
+    //DOG PICTURE STATE
+    
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch("https://random.dog/woof.json?ref=apilist.fun", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.url);
+        setDog(result.url);
+      })
+      .catch((error) => console.error(error));
+  }
 
   function getQuote() {
     const requestOptions = {
@@ -118,6 +136,41 @@ function App() {
             />
           ))}
         </Grid>
+      </Container>
+      <Container align="center">
+        <Typography
+          variant="h2"
+          align="center"
+          color="text.primary"
+          sx={{ py: 2 }}
+        >
+          Random Dog Pictures
+        </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          color="text.secondary"
+          sx={{ mx: 10 }}
+          id = "subtitle"
+        >
+          Welcome to the Dog Pictures Zone!
+        </Typography>
+        <br/>
+        <img src={dog} height="300px" width="auto"/>
+        <br/>
+        <Button
+          variant="contained"
+          sx={{ 
+          px: 6, 
+          mx: "auto"
+          }}
+          onClick={() => {
+            fetchDogPic();
+          }}
+        >
+          Click for a Dog Picture
+          <br/>
+        </Button>
       </Container>
     </div>
   );
