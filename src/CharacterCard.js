@@ -11,9 +11,27 @@ import { useState } from 'react';
 
 export default function CharacterCard({image, title, description, buttonId}) {
     const [votes, setVotes] = useState(0);
+    const [dogPic, setDogPic] = useState(image);
     function updateVotes(){
         setVotes(votes + 1);
+        fetchDogPic(image);
     }
+    async function fetchDogPic() {  
+        //DOG PICTURE STATE
+        
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow"
+        };
+        
+        fetch("https://random.dog/woof.json?ref=apilist.fun", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result.url);
+            setDogPic(result.url);
+          })
+          .catch((error) => console.error(error));
+      }
 
     return (
         <Grid item xs={12} md={4}>
@@ -21,7 +39,7 @@ export default function CharacterCard({image, title, description, buttonId}) {
                 <CardMedia
                     component="img"
                     height="350px"
-                    image={image}
+                    image={dogPic}
                 />
                 <CardHeader
                     title={title}
