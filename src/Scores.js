@@ -88,12 +88,11 @@ function PrintScoreboard({scoreboardNames, scoreboardPoints}){
             <Typography variant='h4'>
                 Scoreboard: Oldest to Newest
             </Typography>
-            Note: To get on the scoreboard, please finish a game before submitting your name. Thank you!
-            <br/>
             <Typography variant='h6'>
                 {toPrint}
             </Typography>
-            
+            <br/>
+            Note: To get on the scoreboard, please finish a game before submitting your name. Thank you!
             <br/>
         </>
     )
