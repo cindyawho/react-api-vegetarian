@@ -9,6 +9,7 @@ import { useState } from 'react';
 import FoodGame from './FoodGame';
 import Scores from './Scores.js'
 import BonusGame from './BonusGame.js'
+import GuessIngredient from "./GuessIngredient.js";
 
 function App() {
   const[score, setScore] = useState(0);
@@ -33,14 +34,18 @@ function App() {
           score={score}
           setScore={setScore}
         />
+        <GuessIngredient 
+          score={score}
+          setScore={setScore}
+        />
         <Scores 
           score={score}
           setScore={setScore}
         />
-        <BonusGame 
+        {/* <BonusGame 
           score={score}
           setScore={setScore}
-        />
+        /> */}
       </Container>
     </div>
   );

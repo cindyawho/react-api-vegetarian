@@ -136,7 +136,51 @@ function Message({resultMessage, score, gameOver, restartGame, questionNumber, f
         toggleButton(!buttonAbility);
         gameOver = true;
     }
-    if(!gameOver){
+    if(!gameOver && questionNumber == 0){
+        return (
+            <>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
+                {resultMessage} Your Score: {score}/500
+            </Typography>
+            <Button variant="contained"
+                sx={{ 
+                px: 6, 
+                my: 2,
+                mx: "auto"
+                }}
+                onClick={() => {
+                    fetchRandomRecipe();
+                    toggleButton({buttonAbility});
+                    updateQuestionNumber();
+                }}>
+                    Start Game
+            </Button>
+            </>
+        )
+    }
+    if(!gameOver && buttonAbility){
+        return (
+            <>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
+                {resultMessage} Your Score: {score}/500
+            </Typography>
+            <Button variant="contained"
+                sx={{ 
+                px: 6, 
+                my: 2,
+                mx: "auto"
+                }}
+                onClick={() => {
+                    fetchRandomRecipe();
+                    toggleButton({buttonAbility});
+                    updateQuestionNumber();
+                }}>
+                    SUBMIT
+            </Button>
+            </>
+        )
+    } 
+    else if(!gameOver && !buttonAbility){
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
@@ -157,11 +201,12 @@ function Message({resultMessage, score, gameOver, restartGame, questionNumber, f
             </Button>
             </>
         )
-    } else {
+    }
+    else {
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                "Game Over!" Final Score: {score}/5 
+                "Game Over!" Final Score: {score}/500 
             </Typography>
             <Button variant="contained"
                 sx={{ 
