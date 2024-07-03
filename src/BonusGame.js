@@ -13,20 +13,20 @@ export default function BonusGame({score, setScore}){
     const[recipeImage2, setRecipeImage2] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     const[recipeImage3, setRecipeImage3] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     const[recipeTitle1, setRecipeTitle1] = useState("");
-    const[recipeTitle2, setRecipeTitle2] = useState("");
+    // const[recipeTitle2, setRecipeTitle2] = useState("");
     const[recipeTitle3, setRecipeTitle3] = useState("");
 
     const[checkBoxLabel1, setCheckBoxLabel1] = useState("Picture 1");
     const[isChecked1, setIsChecked1] = useState(false);
-    const[checkBoxLabel2, setCheckBoxLabel2] = useState("Picture 2");
-    const[isChecked2, setIsChecked2] = useState(false);
+    // const[checkBoxLabel2, setCheckBoxLabel2] = useState("Picture 2");
+    // const[isChecked2, setIsChecked2] = useState(false);
     const[checkBoxLabel3, setCheckBoxLabel3] = useState("Picture 3");
     const[isChecked3, setIsChecked3] = useState(false);
 
     const checkHandler = () => {
         setIsChecked1(!isChecked1)
     }
-    const checkHandler2 = () => {setIsChecked2(!isChecked2)}
+    // const checkHandler2 = () => {setIsChecked2(!isChecked2)}
     const checkHandler3 = () => {setIsChecked3(!isChecked3)}
 
     async function fetchIngredient(ingredientName){
@@ -44,7 +44,7 @@ export default function BonusGame({score, setScore}){
         fetch(urlString, requestOptions)
         .then((response) => response.json())
         .then((result) => {
-            console.log(result.results[0].id);
+            // console.log(result.results[0].id);
             setID(result.results[0].id);
         })
         .catch((error) => console.error(error));
@@ -57,12 +57,12 @@ export default function BonusGame({score, setScore}){
         };
 
         let urlString = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey=49731ab381b24450981eafd9df6a69b0";
-        console.log(urlString);
+        // console.log(urlString);
         
         fetch(urlString, requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.image);
+                // console.log(result);
                 setRecipeImage3(result.image);
                 // setRecipeTitle3(result.title);
             })
@@ -78,18 +78,25 @@ export default function BonusGame({score, setScore}){
         fetch("https://api.spoonacular.com/recipes/random?apiKey=49731ab381b24450981eafd9df6a69b0", requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.recipes[0]);
+                // console.log(result.recipes[0]);
                 setImageFunction(result.recipes[0].image);
+                // console.log(result.recipes[0].title); //NOT WORKING FOR SOME REASON
                 // setTitleFunction(result.recipes[0].title);
             })
             .catch((error) => console.error(error));
     }
 
-    function checkAnswer(){
+    function checkAnswer(recipeTitle1){
         console.log("Test");
         if(isChecked3){
-
+            setCheckBoxLabel3("Picture 3 is Correct! Nice Sleuthing!" + recipeTitle3);
+        } 
+        if(isChecked1) {
+            setCheckBoxLabel1("Picture 1 is probably incorrect...maybe...you decide, here's the name of the Recipe: " + recipeTitle1);
         }
+        // if(isChecked2){
+        //     setCheckBoxLabel2("Picture 2 is probably incorrect...maybe...you decide, here's the name of the Recipe: " + recipeTitle2);
+        // }
     }
 
     return(
@@ -113,8 +120,9 @@ export default function BonusGame({score, setScore}){
                 onClick={() => {
                     fetchIngredient(ingredient);
                     getImageByID(id);
+                    // console.log(recipeTitle3);
                     fetchRandomRecipe(setRecipeImage1, setRecipeTitle1);
-                    fetchRandomRecipe(setRecipeImage2, setRecipeTitle2);
+                    // fetchRandomRecipe(setRecipeImage2, setRecipeTitle2);
                 }
                 }
             >
@@ -122,15 +130,15 @@ export default function BonusGame({score, setScore}){
             </Button>
             <br/>
             <img src={recipeImage1} height={imageHeightValue}/>{'    '}
-            <img src={recipeImage2} height={imageHeightValue}/>{'    '}
+            {/* <img src={recipeImage2} height={imageHeightValue}/>{'    '} */}
             <img src={recipeImage3} height={imageHeightValue}/>
             <br/>
             <div>
                 <input type="checkbox" id="checkbox1" checked={isChecked1} onChange={checkHandler}/>
                 <label htmlFor="checkbox1">{checkBoxLabel1}</label>
-                <br/>
+                {/* <br/>
                 <input type="checkbox" id="checkbox2" checked={isChecked2} onChange={checkHandler2}/>
-                <label htmlFor="checkbox2">{checkBoxLabel2}</label>
+                <label htmlFor="checkbox2">{checkBoxLabel2}</label> */}
                 <br/>
                 <input type="checkbox" id="checkbox3" checked={isChecked3} onChange={checkHandler3}/>
                 <label htmlFor="checkbox3">{checkBoxLabel3}</label>
@@ -138,7 +146,7 @@ export default function BonusGame({score, setScore}){
             <Button 
                 variant="outlined"
                 onClick={() => {
-                    checkAnswer();
+                    checkAnswer(recipeTitle1);
                 }
                 }
             >
