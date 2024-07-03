@@ -4,10 +4,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import "./App.css";
+import * as React from 'react';
+import { useState } from 'react';
 import FoodGame from './FoodGame';
+import Scores from './Scores.js'
 
 function App() {
-  
+  const[score, setScore] = useState(0);
+
   return (
     <div className="App">
       <CssBaseline />
@@ -19,12 +23,19 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Is it Vegetarian??
+            Welcome to Is it Vegetarian??
           </Typography>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" sx={{ my: 4 }}>
-        <FoodGame/>
+        <FoodGame
+          score={score}
+          setScore={setScore}
+        />
+        <Scores 
+          score={score}
+          setScore={setScore}
+        />
       </Container>
     </div>
   );

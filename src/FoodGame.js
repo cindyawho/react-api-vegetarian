@@ -5,8 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Container } from '@mui/material';
 import Grid from "@mui/material/Grid";
 
-export default function FoodGame(){
-    const[score, setScore] = useState(0);
+export default function FoodGame({score, setScore}){
     const[recipeImage, setRecipeImage] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     const[recipeTitle, setRecipeTitle] = useState("");
     const[isVegetarian, setIsVegetarian] = useState(true);
@@ -83,24 +82,20 @@ export default function FoodGame(){
     return(
         <>
         <Container align="center">
-            <Typography variant="h3" sx={{ my: 2, mx: 1.5 }}>
-                Welcome to "Is it Vegetarian?"
-            </Typography>
+            <Message 
+                resultMessage={resultMessage} 
+                score={score} 
+                gameOver={gameOver} 
+                restartGame={restartGame} 
+                questionNumber={questionNumber}
+                fetchRandomRecipe = {fetchRandomRecipe}
+                toggleButton = {toggleButton} 
+                buttonAbility={buttonAbility}
+                updateQuestionNumber={updateQuestionNumber}
+            />
+            <br/>
             <Question questionNumber={questionNumber}/>
-            <Message resultMessage={resultMessage} score={score} gameOver={gameOver} restartGame={restartGame}/>
-            <Button variant="contained"
-                sx={{ 
-                px: 6, 
-                my: 2,
-                mx: "auto"
-                }}
-                onClick={() => {
-                    fetchRandomRecipe();
-                    toggleButton({buttonAbility});
-                    updateQuestionNumber();
-                }}>
-                    Next Image 📸
-            </Button>
+
             <br/>
             <Button id="vegetarianButton" href="#"
                 variant="outlined"
@@ -124,7 +119,7 @@ export default function FoodGame(){
             </Button>
             <br/>
             <img src={recipeImage} width="500px"/>
-            <Typography variant='h3'>
+            <Typography variant='h5'>
                 {recipeTitle}
             </Typography>
         </Container>
@@ -135,12 +130,31 @@ export default function FoodGame(){
     )
 }
 
-function Message({resultMessage, score, gameOver, restartGame}) {
+function Message({resultMessage, score, gameOver, restartGame, questionNumber, fetchRandomRecipe, toggleButton, buttonAbility, updateQuestionNumber}) {
+    if(questionNumber == 6){
+        toggleButton(!buttonAbility);
+        gameOver = true;
+    }
     if(!gameOver){
         return (
+            <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
                 {resultMessage} Your Score: {score}/5
             </Typography>
+            <Button variant="contained"
+                sx={{ 
+                px: 6, 
+                my: 2,
+                mx: "auto"
+                }}
+                onClick={() => {
+                    fetchRandomRecipe();
+                    toggleButton({buttonAbility});
+                    updateQuestionNumber();
+                }}>
+                    Next Image 📸
+            </Button>
+            </>
         )
     } else {
         return (
@@ -172,4 +186,12 @@ function Question({questionNumber}) {
             </>
         )
     }
+}
+
+function ShowGame() {
+
+    return(
+        <>
+        </>
+    )
 }
