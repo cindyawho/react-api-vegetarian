@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
-import { Container } from '@mui/material';
+import { Container, TextField } from '@mui/material';
 import Grid from "@mui/material/Grid";
 
 export default function FoodGame({score, setScore}){
@@ -49,6 +49,7 @@ export default function FoodGame({score, setScore}){
             setUserResponse(false);
         } else {
             setUserResponse(true);
+            console.log(isVegetarian);
         }
     }
 
@@ -57,7 +58,7 @@ export default function FoodGame({score, setScore}){
         // console.log(userResponse, ":", isVegetarian);
         // console.log("Score: ", score);
         if(userResponse === isVegetarian){
-            setScore(score + 1);
+            setScore(score + 100);
             setResultMessage("Correct!");
         } 
         else if(userResponse === undefined) {
@@ -139,7 +140,7 @@ function Message({resultMessage, score, gameOver, restartGame, questionNumber, f
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                {resultMessage} Your Score: {score}/5
+                {resultMessage} Your Score: {score}/500
             </Typography>
             <Button variant="contained"
                 sx={{ 

@@ -3,10 +3,6 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
-import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
-import FoodGame from './FoodGame';
 import { Typography } from '@mui/material';
 
 export default function Scores({score}){
