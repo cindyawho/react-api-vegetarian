@@ -7,9 +7,12 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import FoodGame from './FoodGame';
+import { Typography } from '@mui/material';
 
-export default function Scores({score, setScore}){
-    // const[score, setScore] = useState(0);
+export default function Scores({score}){
+    const[name, setName] = useState("");
+    const[scoreboardNames, setScoreboardNames] = useState([]);
+    const[scoreboardPoints, setScoreboardPoints] = useState([]);
     const [value, setValue] = useState(30);
     const handleChange = (event) => {
         console.log(event);
@@ -19,8 +22,15 @@ export default function Scores({score, setScore}){
     //     setValue(newValue as number);
     //   };
 
+    useEffect(() => {
+        // console.log(scoreboardNames);
+        // console.log(scoreboardPoints);
+    }, [scoreboardNames, scoreboardPoints]);
+
     return(
         <>
+            <br/>
+            <br/>
             {/* Score: {score} */}
             <Box
                 component="form"
@@ -30,15 +40,61 @@ export default function Scores({score, setScore}){
                 noValidate
                 autoComplete="off"
             >
-                <TextField id="outlined-basic" variant="outlined" value="Name"/>
-                <Button variant="outlined">Submit</Button>
+                <PrintScoreboard
+                    scoreboardNames={scoreboardNames}
+                    scoreboardPoints={scoreboardPoints}
+                />
+                <TextField
+                    id="outlined-controlled"
+                    label="Name"
+                    onChange={(event) => {
+                        setName(event.target.value);
+                    }}
+                />
+                <Button 
+                    variant="outlined"
+                    onClick={() => {
+                        setScoreboardNames([...scoreboardNames, name]);
+                        setScoreboardPoints([...scoreboardPoints, score]);
+                        console.log(scoreboardPoints);
+                    }
+                    }
+                >
+                    Submit
+                </Button>
             </Box>
 
-            <Box sx={{ width: 200 }}>
+            {/* <Box sx={{ width: 200 }}>
                 <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
                 <Slider aria-label="Volume" value={value} onChange={handleChange} />
                 </Stack>
-            </Box>
+            </Box> */}
+        </>
+    )
+}
+
+function PrintScoreboard({scoreboardNames, scoreboardPoints}){
+    let toPrint = "";
+    for(let i = 0; i < scoreboardNames.length; i++){
+        toPrint += scoreboardNames[i] + ":\t" + scoreboardPoints[i] + ",\t";
+    }
+    // let namesString = scoreboardNames.toString();
+    // let pointsString = scoreboardPoints.toString();
+    return(
+        <> 
+            {/* {namesString}
+            <br/>
+            {pointsString} */}
+            <Typography variant='h4'>
+                Scoreboard: Oldest to Newest
+            </Typography>
+            Note: To get on the scoreboard, please finish a game before submitting your name. Thank you!
+            <br/>
+            <Typography variant='h6'>
+                {toPrint}
+            </Typography>
+            
+            <br/>
         </>
     )
 }

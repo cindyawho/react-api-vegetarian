@@ -23,7 +23,7 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Welcome to Is it Vegetarian??
+            Welcome to "Is it Vegetarian??"
           </Typography>
         </Toolbar>
       </AppBar>

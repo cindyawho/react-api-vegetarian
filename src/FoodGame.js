@@ -124,7 +124,7 @@ export default function FoodGame({score, setScore}){
             </Typography>
         </Container>
         <Typography variant='h10'>
-            Note: <br/> The answers to this quiz may be incorrect. <br/> Please be mad at the API not at the creator of the site. <br/> Thank you. 😂
+            Disclaimer: The answers to this quiz may be incorrect due to the API.
         </Typography>
         </>
     )
