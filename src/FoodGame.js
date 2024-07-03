@@ -2,8 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
-import { Container, TextField } from '@mui/material';
-import Grid from "@mui/material/Grid";
+import { Container } from '@mui/material';
 
 export default function FoodGame({score, setScore}){
     const[recipeImage, setRecipeImage] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -15,7 +14,6 @@ export default function FoodGame({score, setScore}){
     const[questionNumber, setQuestionNumber] = useState(0);
 
     const[gameOver, setGameOver] = useState(false);
-    const[finalMessage, setFinalMessage] = useState("");
 
     function restartGame(){
         console.log("Starting New Game")
@@ -25,6 +23,7 @@ export default function FoodGame({score, setScore}){
         setButtonAbility(true);
         setScore(0);
         setQuestionNumber(0);
+        setGameOver(false);
     }
 
     async function fetchRandomRecipe() {
@@ -36,7 +35,8 @@ export default function FoodGame({score, setScore}){
         fetch("https://api.spoonacular.com/recipes/random?apiKey=49731ab381b24450981eafd9df6a69b0", requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result.recipes[0]);
+                // console.log(result.recipes[0]);
+                // console.log(recipeImage, recipeTitle);
                 setRecipeImage(result.recipes[0].image);
                 setIsVegetarian(result.recipes[0].vegetarian);
                 setRecipeTitle(result.recipes[0].title)
@@ -87,6 +87,7 @@ export default function FoodGame({score, setScore}){
                 resultMessage={resultMessage} 
                 score={score} 
                 gameOver={gameOver} 
+                setGameOver={setGameOver}
                 restartGame={restartGame} 
                 questionNumber={questionNumber}
                 fetchRandomRecipe = {fetchRandomRecipe}
@@ -119,7 +120,7 @@ export default function FoodGame({score, setScore}){
                     Not Vegetarian
             </Button>
             <br/>
-            <img src={recipeImage} width="500px"/>
+            <img src={recipeImage} width="500px" alt="food"/>
             <Typography variant='h5'>
                 {recipeTitle}
             </Typography>
@@ -131,12 +132,12 @@ export default function FoodGame({score, setScore}){
     )
 }
 
-function Message({resultMessage, score, gameOver, restartGame, questionNumber, fetchRandomRecipe, toggleButton, buttonAbility, updateQuestionNumber}) {
-    if(questionNumber == 6){
+function Message({resultMessage, score, gameOver, setGameOver, restartGame, questionNumber, fetchRandomRecipe, toggleButton, buttonAbility, updateQuestionNumber}) {
+    if(questionNumber === 6){
         toggleButton(!buttonAbility);
-        gameOver = true;
+        setGameOver(true);
     }
-    if(!gameOver && questionNumber == 0){
+    if(!gameOver && questionNumber === 0){
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
@@ -225,19 +226,11 @@ function Message({resultMessage, score, gameOver, restartGame, questionNumber, f
 }
 
 function Question({questionNumber}) {
-    if(questionNumber!=0){
+    if(questionNumber!==0){
         return(
             <>
                 Question Number: {questionNumber} {"\t"} 
             </>
         )
     }
-}
-
-function ShowGame() {
-
-    return(
-        <>
-        </>
-    )
 }

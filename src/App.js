@@ -8,7 +8,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import FoodGame from './FoodGame';
 import Scores from './Scores.js'
-import BonusGame from './BonusGame.js'
 import GuessIngredient from "./GuessIngredient.js";
 
 function App() {
@@ -41,6 +40,10 @@ function App() {
         <Scores 
           score={score}
           setScore={setScore}
+          // recipeImage={recipeImage}
+          // setRecipeImage={setRecipeImage}
+          // recipeTitle={recipeTitle} 
+          // setRecipeTitle={setRecipeTitle}
         />
         {/* <BonusGame 
           score={score}

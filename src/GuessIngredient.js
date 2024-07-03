@@ -25,6 +25,17 @@ export default function GuessIngredient({score, setScore}){
 
     function updateMessage() {
         console.log("Hello!");
+        if(isChecked1){
+            setCheckBoxLabel1("Ingredient 1");
+        } else {
+            setCheckBoxLabel1("Boop");
+        }
+        if(isChecked2){
+            setCheckBoxLabel2("ahhhhhhhh");
+        }
+        if(isChecked3){
+            setCheckBoxLabel3("eh");
+        }
     }
 
     return(
@@ -45,10 +56,10 @@ export default function GuessIngredient({score, setScore}){
         <div>
                 <input type="checkbox" id="checkbox1" checked={isChecked1} onChange={checkHandler}/>
                 <label htmlFor="checkbox1">{checkBoxLabel1}</label>
-                <br/>
+
                 <input type="checkbox" id="checkbox2" checked={isChecked2} onChange={checkHandler2}/>
                 <label htmlFor="checkbox2">{checkBoxLabel2}</label>
-                <br/>
+
                 <input type="checkbox" id="checkbox3" checked={isChecked3} onChange={checkHandler3}/>
                 <label htmlFor="checkbox3">{checkBoxLabel3}</label>
             </div>
