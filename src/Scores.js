@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+import Grid from '@mui/material/Unstable_Grid2';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
@@ -23,23 +25,30 @@ export default function Scores({score}){
         // console.log(scoreboardPoints);
     }, [scoreboardNames, scoreboardPoints]);
 
+
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    }));
+
     return(
         <>
             <br/>
             <br/>
-            {/* Score: {score} */}
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
+            <Grid container>
+            <Grid xs={12}>
+                <Item>
                 <PrintScoreboard
                     scoreboardNames={scoreboardNames}
                     scoreboardPoints={scoreboardPoints}
                 />
+                </Item>
+            </Grid>
+            <Grid xs={12}>
+                <Item>
                 <TextField
                     id="outlined-controlled"
                     label="Name"
@@ -58,7 +67,9 @@ export default function Scores({score}){
                 >
                     Submit
                 </Button>
-            </Box>
+                </Item>
+            </Grid>
+            </Grid>
 
             {/* <Box sx={{ width: 200 }}>
                 <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
