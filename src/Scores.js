@@ -92,9 +92,10 @@ function PrintScoreboard({scoreboardNames, scoreboardPoints}){
             {/* {namesString}
             <br/>
             {pointsString} */}
-            <Typography variant='h4'>
+            <img src="https://i.ibb.co/hf2VNCJ/Screenshot-2024-07-04-at-12-58-37-PM-removebg-preview.png" alt="Title of Scoreboard: Oldest to Newest" width="75%"/>
+            {/* <Typography variant='h4'>
                 Scoreboard: Oldest to Newest
-            </Typography>
+            </Typography> */}
             <Typography variant='h6'>
                 {toPrint}
             </Typography>

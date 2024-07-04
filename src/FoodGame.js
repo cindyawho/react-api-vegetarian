@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
 
 export default function FoodGame({score, setScore}){
-    const[recipeImage, setRecipeImage] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    const[recipeImage, setRecipeImage] = useState("https://i.ibb.co/CsKjdMf/Home.png");
     const[recipeTitle, setRecipeTitle] = useState("");
     const[isVegetarian, setIsVegetarian] = useState(true);
     const[userResponse, setUserResponse] = useState();
@@ -156,7 +156,10 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                {resultMessage} Your Score: {score}/500
+                {resultMessage} 
+            </Typography>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
+                Your Score: {score}/500
             </Typography>
             <Button variant="contained"
                 sx={{ 
