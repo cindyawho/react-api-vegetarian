@@ -47,8 +47,7 @@ export default function Scores({score}){
                 />
                 </Item>
             </Grid>
-            <Grid xs={12}>
-                <Item>
+            <Grid xs={12} sx={{mt: 3}}>
                 <TextField
                     id="outlined-controlled"
                     label="Name"
@@ -57,6 +56,7 @@ export default function Scores({score}){
                     }}
                 />
                 <Button 
+                    sx={{mt: 2}}
                     variant="outlined"
                     onClick={() => {
                         setScoreboardNames([...scoreboardNames, name]);
@@ -67,7 +67,6 @@ export default function Scores({score}){
                 >
                     Submit
                 </Button>
-                </Item>
             </Grid>
             </Grid>
 
