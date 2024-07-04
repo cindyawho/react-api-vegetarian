@@ -208,7 +208,7 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
                 {resultMessage} 
             </Typography>
-            <Typography>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
                 Score: {score}/500
             </Typography>
             

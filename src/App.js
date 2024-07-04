@@ -24,9 +24,10 @@ function App() {
         sx={{ borderBottom: "1px solid lightgray" }}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <img src="https://i.ibb.co/yhy60Vd/Screenshot-2024-07-04-at-1-19-37-PM-removebg-preview.png" alt="Welcome to Is It Vegetarian Title" height="50px"/>
+          {/* <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Welcome to "Is it Vegetarian??"
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" sx={{ my: 4 }}>

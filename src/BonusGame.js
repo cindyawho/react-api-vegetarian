@@ -9,9 +9,9 @@ export default function BonusGame({score, setScore}){
 
     const[id, setID] = useState("");
     const[ingredient, setIngredient] = useState("");
-    const[recipeImage1, setRecipeImage1] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    const[recipeImage2, setRecipeImage2] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    const[recipeImage3, setRecipeImage3] = useState("https://images.unsplash.com/photo-1533745848184-3db07256e163?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    const[recipeImage1, setRecipeImage1] = useState("https://images.pexels.com/photos/3026802/pexels-photo-3026802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    const[recipeImage2, setRecipeImage2] = useState("https://images.pexels.com/photos/3026802/pexels-photo-3026802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    const[recipeImage3, setRecipeImage3] = useState("https://images.pexels.com/photos/3026802/pexels-photo-3026802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     const[recipeTitle1, setRecipeTitle1] = useState("");
     // const[recipeTitle2, setRecipeTitle2] = useState("");
     const[recipeTitle3, setRecipeTitle3] = useState("");
