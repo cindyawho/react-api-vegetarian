@@ -8,6 +8,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import FoodGame from './FoodGame';
 import Scores from './Scores.js'
+import BonusGame from './BonusGame.js'
 import GuessIngredient from "./GuessIngredient.js";
 
 function App() {
@@ -33,10 +34,10 @@ function App() {
           score={score}
           setScore={setScore}
         />
-        <GuessIngredient 
+        {/* <GuessIngredient 
           score={score}
           setScore={setScore}
-        />
+        /> */}
         <Scores 
           score={score}
           setScore={setScore}
@@ -45,11 +46,14 @@ function App() {
           // recipeTitle={recipeTitle} 
           // setRecipeTitle={setRecipeTitle}
         />
-        {/* <BonusGame 
+        <BonusGame 
           score={score}
           setScore={setScore}
-        /> */}
+        />
       </Container>
+      <Typography variant='h10'>
+          Disclaimer: The answers to this quiz may be incorrect due to the API.
+      </Typography>
     </div>
   );
 }

@@ -29,6 +29,10 @@ export default function BonusGame({score, setScore}){
     // const checkHandler2 = () => {setIsChecked2(!isChecked2)}
     const checkHandler3 = () => {setIsChecked3(!isChecked3)}
 
+    // useEffect(() =>{
+
+    // }, [ingredient])
+
     async function fetchIngredient(ingredientName){
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");

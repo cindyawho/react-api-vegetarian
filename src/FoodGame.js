@@ -2,6 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
+import Grid from '@mui/material/Unstable_Grid2';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
 
 export default function FoodGame({score, setScore}){
@@ -62,7 +66,7 @@ export default function FoodGame({score, setScore}){
             setResultMessage("Correct!");
         } 
         else if(userResponse === undefined) {
-            setResultMessage(resultMessage);
+            setResultMessage("Good luck!");
         }
         else {
             setScore(score);
@@ -80,10 +84,29 @@ export default function FoodGame({score, setScore}){
         setQuestionNumber(questionNumber + 1);
     }
 
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      }));
+      
+
     return(
         <>
-        <Container align="center">
-            <Message 
+        <Grid container spacing={2}>
+        <Grid style={{ height: "100%" }} xs={6}>
+            <Item>
+                <Question questionNumber={questionNumber}/>
+                <img src={recipeImage} width="100%" alt="food"/>
+                <Typography variant='h5'>
+                    {recipeTitle}
+                </Typography>
+            </Item>
+        </Grid>
+        <Grid xs={6}>
+            <Item><Message 
                 resultMessage={resultMessage} 
                 score={score} 
                 gameOver={gameOver} 
@@ -95,10 +118,8 @@ export default function FoodGame({score, setScore}){
                 buttonAbility={buttonAbility}
                 updateQuestionNumber={updateQuestionNumber}
             />
-            <br/>
-            <Question questionNumber={questionNumber}/>
-
-            <br/>
+            </Item>
+            <Item>
             <Button id="vegetarianButton" href="#"
                 variant="outlined"
                 disabled={buttonAbility}
@@ -119,15 +140,9 @@ export default function FoodGame({score, setScore}){
                 }}>
                     Not Vegetarian
             </Button>
-            <br/>
-            <img src={recipeImage} width="500px" alt="food"/>
-            <Typography variant='h5'>
-                {recipeTitle}
-            </Typography>
-        </Container>
-        <Typography variant='h10'>
-            Disclaimer: The answers to this quiz may be incorrect due to the API.
-        </Typography>
+            </Item>
+        </Grid>
+        </Grid>
         </>
     )
 }
@@ -163,7 +178,10 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                {resultMessage} Your Score: {score}/500
+                {resultMessage} 
+            </Typography>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
+                Your Score: {score}/500
             </Typography>
             <Button variant="contained"
                 sx={{ 
@@ -185,8 +203,12 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                {resultMessage} Your Score: {score}/500
+                {resultMessage} 
             </Typography>
+            <Typography>
+                Score: {score}/500
+            </Typography>
+            
             <Button variant="contained"
                 sx={{ 
                 px: 6, 
@@ -207,7 +229,10 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
         return (
             <>
             <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
-                "Game Over!" Final Score: {score}/500 
+                Game Over! 
+            </Typography>
+            <Typography variant="h4" sx={{ my: 2, mx: 1.5 }}>
+                Final Score: {score}/500 
             </Typography>
             <Button variant="contained"
                 sx={{ 
@@ -226,10 +251,20 @@ function Message({resultMessage, score, gameOver, setGameOver, restartGame, ques
 }
 
 function Question({questionNumber}) {
+    if(questionNumber == 6){
+        return(
+            <>
+                
+            </>
+        )
+    }
     if(questionNumber!==0){
         return(
             <>
-                Question Number: {questionNumber} {"\t"} 
+                <Typography variant='h5'>
+                    Question Number: {questionNumber} {"\t"} 
+                </Typography>
+                
             </>
         )
     }
