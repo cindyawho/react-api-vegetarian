@@ -3,9 +3,15 @@ import { useState, useEffect } from 'react';
 import Typography from "@mui/material/Typography";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 
 export default function BonusGame({score, setScore}){
     let imageHeightValue = "175px";
+    const handleChange = (event) => {
+        setIngredient(event.target.value);
+      };
 
     const[id, setID] = useState("");
     const[ingredient, setIngredient] = useState("");
@@ -113,12 +119,27 @@ export default function BonusGame({score, setScore}){
             <Typography variant='h6'>
                 Type an ingredient name and guess which of the pictures below include that item.
             </Typography>
-            <TextField id="outlined-controlled"
+            <InputLabel id="select-label">Ingredient</InputLabel>
+            <Select
+                labelId="select-label"
+                id="demo-simple-select"
+                value={ingredient}
+                label="Ingredient"
+                onChange={handleChange}
+            >
+                <MenuItem value={"cherry"}>Cherry</MenuItem>
+                <MenuItem value={"egg"}>Egg</MenuItem>
+                <MenuItem value={"mushroom"}>Mushroom</MenuItem>
+                <MenuItem value={"parsley"}>Parsley</MenuItem>
+                <MenuItem value={"quinoa"}>Quinoa</MenuItem>
+                <MenuItem value={"zucchini"}>Zucchini</MenuItem>
+            </Select>
+            {/* <TextField id="outlined-controlled"
                 label="Ingredient name"
                 onChange={(event) => {
                     // console.log(event.target.value);
                     setIngredient(event.target.value);
-            }}/>
+            }}/> */}
             <Button 
                 variant="outlined"
                 onClick={() => {
