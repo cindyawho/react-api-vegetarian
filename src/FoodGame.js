@@ -4,9 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { Container } from '@mui/material';
 
 export default function FoodGame({score, setScore}){
     const[recipeImage, setRecipeImage] = useState("https://i.ibb.co/CsKjdMf/Home.png");
@@ -90,7 +88,7 @@ export default function FoodGame({score, setScore}){
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-      }));
+    }));
       
 
     return(
